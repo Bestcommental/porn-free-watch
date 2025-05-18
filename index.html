@@ -7,9 +7,29 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Age Gate Overlay -->
+  <div id="age-gate" class="age-overlay">
+    <div class="age-popup">
+      <h2>This is an adult website</h2>
+      <p>
+        This website contains age-restricted materials including nudity and explicit depictions of sexual activity.
+        By entering, you affirm that you are at least 18 years of age or the age of majority in the jurisdiction
+        you are accessing the website from and you consent to viewing sexually explicit content.
+      </p>
+      <div class="age-buttons">
+        <button onclick="enterSite()">I am 18 or older - Enter</button>
+        <button onclick="exitSite()">I am under 18 - Exit</button>
+      </div>
+      <p class="parental-info">
+        Our <a href="https://www.google.com/search?q=parental+control+tools" target="_blank">parental controls page</a> explains how you can easily block access to this site.
+      </p>
+    </div>
+  </div>
+
+  <!-- Main Site Content -->
   <header>
     <div class="logo">
-      <span class="logo-white">PornFree</span><span class="logo-orange">Watch</span>
+      <span class="logo-white">Hub</span><span class="logo-orange">Clone</span>
     </div>
     <nav>
       <a href="#">Home</a>
@@ -32,7 +52,7 @@
     <h2 class="section-title">🌐 Embedded Previews</h2>
     <section class="grid">
       <div class="card">
-        <iframe src="https://www.pornhub.com/embed/66ba70b9216d5" frameborder="0" width="560" height="315" scrolling="no" allowfullscreen></iframe>
+        <iframe src="https://example.com" title="Example Site 1"></iframe>
         <div class="card-info"><p>Example Site 1</p></div>
       </div>
       <div class="card">
