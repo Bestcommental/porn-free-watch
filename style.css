@@ -1,0 +1,105 @@
+/* Reset & Base Styles */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.search-bar input {
+    padding: 8px 15px;
+    width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    background: #f00;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.user-actions button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    background: #f00;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px 0;
+    color: #333;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    color: #f00;
+    font-weight: bold;
+}
+
+/* Video Grid */
+.container {
+    display: flex;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+}
+
+.video-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.video-card img {
+    width: 100%;
+    height: auto;
+}
+
+.video-card h3 {
+    margin: 10px;
+    font-size: 1rem;
+}
+
+.video-card p {
+    margin: 0 10px 10px;
+    color: #666;
+    font-size: 0.9rem;
+}
