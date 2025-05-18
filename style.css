@@ -132,4 +132,86 @@ main {
   font-size: 1rem;
   background: #000;
   color: var(--text-muted);
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #000;
+  color: var(--text-muted);
+}
+
+/* Age Gate Overlay */
+.age-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.age-popup {
+  background: #222;
+  border: 2px solid var(--accent);
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 0 20px #000;
+}
+
+.age-popup h2 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.age-popup p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.age-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.age-buttons button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.age-buttons button:first-child {
+  background: var(--accent);
+  color: #000;
+}
+
+.age-buttons button:last-child {
+  background: #444;
+  color: #fff;
+}
+
+.age-buttons button:hover {
+  opacity: 0.85;
+}
+
+.parental-info {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.parental-info a {
+  color: #ffb84d;
+  text-decoration: underline;
 }
