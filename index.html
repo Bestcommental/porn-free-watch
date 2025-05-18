@@ -3,64 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafeTube - Video Sharing</title>
+    <title>OrangeTube - Video Sharing</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <span>🔒 SafeTube</span>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search videos...">
-            <button>Search</button>
-        </div>
-        <div class="user-actions">
-            <button>Upload</button>
-            <button>Sign In</button>
-        </div>
-    </nav>
+    <!-- Main Frame Structure -->
+    <frame class="frame-container">
+        <!-- Header Frame -->
+        <frame class="header-frame">
+            <nav class="navbar">
+                <div class="logo">
+                    <span>Porn Free Watch</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search videos...">
+                    <button>🔍</button>
+                </div>
+                <div class="user-actions">
+                    <button id="uploadBtn">⬆️ Upload</button>
+                    <button>👤 Sign In</button>
+                </div>
+            </nav>
+        </frame>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <a href="#" class="active">🏠 Home</a>
-            <a href="#">🔥 Trending</a>
-            <a href="#">🎵 Music</a>
-            <a href="#">🎮 Gaming</a>
-            <a href="#">📺 Movies</a>
-            <a href="#">📰 News</a>
-        </div>
+        <!-- Sidebar Frame -->
+        <frame class="sidebar-frame">
+            <div class="sidebar">
+                <a href="#" class="active">🏠 Home</a>
+                <a href="#">🔥 Trending</a>
+                <a href="#">🎵 Music</a>
+                <a href="#">🎮 Gaming</a>
+                <a href="#">📺 Movies</a>
+                <a href="#">⚙️ Settings</a>
+            </div>
+        </frame>
 
-        <!-- Video Grid -->
-        <div class="video-grid">
-            <!-- Video Card 1 -->
-            <div class="video-card" onclick="openVideo('video1')">
-                <img src="https://via.placeholder.com/300x170" alt="Video Thumbnail">
-                <h3>How to Build a Website</h3>
-                <p>Tech Tutorials • 100K views</p>
+        <!-- Content Frame -->
+        <frame class="content-frame">
+            <div class="video-grid">
+                <!-- Videos will load here -->
             </div>
+        </frame>
+    </frame>
 
-            <!-- Video Card 2 -->
-            <div class="video-card" onclick="openVideo('video2')">
-                <img src="https://via.placeholder.com/300x170" alt="Video Thumbnail">
-                <h3>Cooking Pasta in 10 Minutes</h3>
-                <p>Cooking Channel • 50K views</p>
-            </div>
-
-            <!-- More videos... -->
-            <div class="video-card">
-                <img src="https://via.placeholder.com/300x170" alt="Video Thumbnail">
-                <h3>Travel Vlog: Japan Trip</h3>
-                <p>Travel Adventures • 200K views</p>
-            </div>
-            <div class="video-card">
-                <img src="https://via.placeholder.com/300x170" alt="Video Thumbnail">
-                <h3>Learn JavaScript in 1 Hour</h3>
-                <p>Code Master • 150K views</p>
-            </div>
+    <!-- Video Upload Modal (Hidden by default) -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Upload Video</h2>
+            <form id="uploadForm">
+                <input type="file" id="videoUpload" accept="video/*" required>
+                <input type="text" placeholder="Title" required>
+                <textarea placeholder="Description"></textarea>
+                <button type="submit">Upload</button>
+            </form>
+            <div id="videoPreview"></div>
         </div>
     </div>
 
