@@ -13,23 +13,45 @@
     </div>
     <nav>
       <a href="#">Home</a>
-      <a href="#">Videos</a>
+      <a href="#">Trending</a>
       <a href="#">Categories</a>
       <a href="#">Login</a>
     </nav>
   </header>
 
+  <section class="hero">
+    <h1>Explore the Web Like Never Before</h1>
+    <p>Live previews embedded directly on the homepage.</p>
+    <div class="search-bar">
+      <input type="text" placeholder="Search content..." />
+      <button onclick="search()">Search</button>
+    </div>
+  </section>
+
   <main>
+    <h2 class="section-title">🌐 Embedded Previews</h2>
     <section class="grid">
-      <div class="card"><img src="https://via.placeholder.com/320x180" alt="Preview"><p>Sample Title 1</p></div>
-      <div class="card"><img src="https://via.placeholder.com/320x180" alt="Preview"><p>Sample Title 2</p></div>
-      <div class="card"><img src="https://via.placeholder.com/320x180" alt="Preview"><p>Sample Title 3</p></div>
-      <div class="card"><img src="https://via.placeholder.com/320x180" alt="Preview"><p>Sample Title 4</p></div>
+      <div class="card">
+        <iframe src="https://example.com" title="Example Site 1"></iframe>
+        <div class="card-info"><p>Example Site 1</p></div>
+      </div>
+      <div class="card">
+        <iframe src="https://www.wikipedia.org/" title="Wikipedia"></iframe>
+        <div class="card-info"><p>Wikipedia Preview</p></div>
+      </div>
+      <div class="card">
+        <iframe src="https://www.openai.com/" title="OpenAI"></iframe>
+        <div class="card-info"><p>OpenAI Homepage</p></div>
+      </div>
+      <div class="card">
+        <iframe src="https://developer.mozilla.org/" title="MDN Docs"></iframe>
+        <div class="card-info"><p>MDN Web Docs</p></div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 HubClone. All rights reserved.</p>
+    <p>&copy; 2025 HubClone. Frame your web like a pro.</p>
   </footer>
 
   <script src="main.js"></script>
