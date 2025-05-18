@@ -2,31 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HubClone</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Age Gate Overlay -->
-  <div id="age-gate" class="age-overlay">
-    <div class="age-popup">
-      <h2>This is an adult website</h2>
+
+  <!-- Age Verification Overlay -->
+  <div id="ageGate" class="age-overlay">
+    <div class="age-box">
+      <h1>🔞 This is an adult website</h1>
       <p>
         This website contains age-restricted materials including nudity and explicit depictions of sexual activity.
         By entering, you affirm that you are at least 18 years of age or the age of majority in the jurisdiction
         you are accessing the website from and you consent to viewing sexually explicit content.
       </p>
       <div class="age-buttons">
-        <button onclick="enterSite()">I am 18 or older - Enter</button>
-        <button onclick="exitSite()">I am under 18 - Exit</button>
+        <button id="enterBtn">✅ I am 18 or older - Enter</button>
+        <button id="exitBtn">❌ I am under 18 - Exit</button>
       </div>
-      <p class="parental-info">
-        Our <a href="https://www.google.com/search?q=parental+control+tools" target="_blank">parental controls page</a> explains how you can easily block access to this site.
+      <p class="age-note">
+        📵 Our <a href="https://www.google.com/search?q=parental+control+tools" target="_blank">parental controls page</a>
+        explains how to easily block access to this site.
       </p>
     </div>
   </div>
 
-  <!-- Main Site Content -->
+  <!-- Website Header -->
   <header>
     <div class="logo">
       <span class="logo-white">Hub</span><span class="logo-orange">Clone</span>
@@ -39,6 +41,7 @@
     </nav>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
     <h1>Explore the Web Like Never Before</h1>
     <p>Live previews embedded directly on the homepage.</p>
@@ -48,6 +51,7 @@
     </div>
   </section>
 
+  <!-- Main Content -->
   <main>
     <h2 class="section-title">🌐 Embedded Previews</h2>
     <section class="grid">
@@ -70,6 +74,7 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 HubClone. Frame your web like a pro.</p>
   </footer>
