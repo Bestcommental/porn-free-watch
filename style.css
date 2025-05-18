@@ -1,221 +1,74 @@
-/* Base Styles */
-:root {
-    --dark-bg: #1a1a1a;
-    --darker-bg: #121212;
-    --orange: #ff7b25;
-    --orange-dark: #e56a1a;
-    --text: #e0e0e0;
-    --text-muted: #aaaaaa;
-}
-
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: var(--dark-bg);
-    color: var(--text);
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #fff;
 }
 
-/* Frame Layout */
-.frame-container {
-    display: grid;
-    grid-template-areas:
-        "header header"
-        "sidebar content";
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: 60px 1fr;
-    height: 100vh;
-}
-
-.header-frame {
-    grid-area: header;
-    background: var(--darker-bg);
-    border-bottom: 1px solid #333;
-}
-
-.sidebar-frame {
-    grid-area: sidebar;
-    background: var(--darker-bg);
-    border-right: 1px solid #333;
-}
-
-.content-frame {
-    grid-area: content;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    height: 100%;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;
+  padding: 1rem 2rem;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--orange);
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
-.search-bar {
-    display: flex;
-    width: 50%;
+.logo-white {
+  color: #fff;
 }
 
-.search-bar input {
-    flex: 1;
-    padding: 8px 15px;
-    background: #333;
-    border: none;
-    border-radius: 20px 0 0 20px;
-    color: var(--text);
+.logo-orange {
+  color: #f90;
 }
 
-.search-bar button {
-    padding: 8px 15px;
-    background: var(--orange);
-    color: white;
-    border: none;
-    border-radius: 0 20px 20px 0;
-    cursor: pointer;
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.2s ease;
 }
 
-.user-actions button {
-    margin-left: 10px;
-    padding: 8px 15px;
-    background: var(--orange);
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
+nav a:hover {
+  color: #fff;
 }
 
-/* Sidebar */
-.sidebar {
-    padding: 20px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
 }
 
-.sidebar a {
-    display: block;
-    padding: 12px 0;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.3s;
+.card {
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
 }
 
-.sidebar a:hover {
-    color: var(--orange);
+.card:hover {
+  transform: scale(1.03);
 }
 
-.sidebar a.active {
-    color: var(--orange);
-    font-weight: bold;
+.card img {
+  width: 100%;
+  display: block;
 }
 
-/* Video Grid */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+.card p {
+  padding: 0.8rem;
+  font-size: 1rem;
 }
 
-.video-card {
-    background: var(--darker-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.video-card:hover {
-    transform: translateY(-5px);
-}
-
-.video-card img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-}
-
-.video-card h3 {
-    margin: 12px;
-    font-size: 1rem;
-}
-
-.video-card p {
-    margin: 0 12px 12px;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
-
-/* Upload Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: var(--darker-bg);
-    padding: 20px;
-    border-radius: 8px;
-    width: 500px;
-    max-width: 90%;
-    border: 1px solid var(--orange);
-}
-
-.modal-content h2 {
-    color: var(--orange);
-    margin-top: 0;
-}
-
-.modal-content input,
-.modal-content textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    background: #333;
-    border: none;
-    border-radius: 4px;
-    color: var(--text);
-}
-
-.modal-content button {
-    background: var(--orange);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.close {
-    color: var(--text-muted);
-    float: right;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-#videoPreview {
-    margin-top: 20px;
-    background: #333;
-    border-radius: 4px;
-    padding: 10px;
-    text-align: center;
-}
-
-#videoPreview video {
-    max-width: 100%;
-    max-height: 200px;
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #000;
+  font-size: 0.9rem;
+  color: #666;
 }
