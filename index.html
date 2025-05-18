@@ -1,66 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OrangeTube - Video Sharing</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HubClone</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Main Frame Structure -->
-    <frame class="frame-container">
-        <!-- Header Frame -->
-        <frame class="header-frame">
-            <nav class="navbar">
-                <div class="logo">
-                    <span>Porn Free Watch</span>
-                </div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search videos...">
-                    <button>🔍</button>
-                </div>
-                <div class="user-actions">
-                    <button id="uploadBtn">⬆️ Upload</button>
-                    <button>👤 Sign In</button>
-                </div>
-            </nav>
-        </frame>
-
-        <!-- Sidebar Frame -->
-        <frame class="sidebar-frame">
-            <div class="sidebar">
-                <a href="#" class="active">🏠 Home</a>
-                <a href="#">🔥 Trending</a>
-                <a href="#">🎵 Music</a>
-                <a href="#">🎮 Gaming</a>
-                <a href="#">📺 Movies</a>
-                <a href="#">⚙️ Settings</a>
-            </div>
-        </frame>
-
-        <!-- Content Frame -->
-        <frame class="content-frame">
-            <div class="video-grid">
-                <!-- Videos will load here -->
-            </div>
-        </frame>
-    </frame>
-
-    <!-- Video Upload Modal (Hidden by default) -->
-    <div id="uploadModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Upload Video</h2>
-            <form id="uploadForm">
-                <input type="file" id="videoUpload" accept="video/*" required>
-                <input type="text" placeholder="Title" required>
-                <textarea placeholder="Description"></textarea>
-                <button type="submit">Upload</button>
-            </form>
-            <div id="videoPreview"></div>
-        </div>
+  <header>
+    <div class="logo">
+      <span class="logo-white">Hub</span><span class="logo-orange">Clone</span>
     </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Videos</a>
+      <a href="#">Categories</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
 
-    <script src="main.js"></script>
+  <main>
+    <section class="grid">
+      <div class="card"><img src="https://via.placeholder.com/320x180" alt="Preview"><p>Sample Title 1</p></div>
+      <div class="card"><img src="https://via.placeholder.com/320x180" alt="Preview"><p>Sample Title 2</p></div>
+      <div class="card"><img src="https://via.placeholder.com/320x180" alt="Preview"><p>Sample Title 3</p></div>
+      <div class="card"><img src="https://via.placeholder.com/320x180" alt="Preview"><p>Sample Title 4</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 HubClone. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
