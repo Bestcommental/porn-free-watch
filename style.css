@@ -1,9 +1,48 @@
-/* Reset & Base Styles */
+/* Base Styles */
+:root {
+    --dark-bg: #1a1a1a;
+    --darker-bg: #121212;
+    --orange: #ff7b25;
+    --orange-dark: #e56a1a;
+    --text: #e0e0e0;
+    --text-muted: #aaaaaa;
+}
+
 body {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background: #f9f9f9;
+    background: var(--dark-bg);
+    color: var(--text);
+}
+
+/* Frame Layout */
+.frame-container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar content";
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 60px 1fr;
+    height: 100vh;
+}
+
+.header-frame {
+    grid-area: header;
+    background: var(--darker-bg);
+    border-bottom: 1px solid #333;
+}
+
+.sidebar-frame {
+    grid-area: sidebar;
+    background: var(--darker-bg);
+    border-right: 1px solid #333;
+}
+
+.content-frame {
+    grid-area: content;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 /* Navbar */
@@ -11,36 +50,43 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    height: 100%;
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    color: var(--orange);
+}
+
+.search-bar {
+    display: flex;
+    width: 50%;
 }
 
 .search-bar input {
+    flex: 1;
     padding: 8px 15px;
-    width: 400px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
+    background: #333;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    color: var(--text);
 }
 
 .search-bar button {
     padding: 8px 15px;
-    background: #f00;
+    background: var(--orange);
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 0 20px 20px 0;
     cursor: pointer;
 }
 
 .user-actions button {
     margin-left: 10px;
     padding: 8px 15px;
-    background: #f00;
+    background: var(--orange);
     color: white;
     border: none;
     border-radius: 20px;
@@ -49,57 +95,127 @@ body {
 
 /* Sidebar */
 .sidebar {
-    width: 200px;
-    background: white;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar a {
     display: block;
-    padding: 10px 0;
-    color: #333;
+    padding: 12px 0;
+    color: var(--text-muted);
     text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar a:hover {
+    color: var(--orange);
 }
 
 .sidebar a.active {
-    color: #f00;
+    color: var(--orange);
     font-weight: bold;
 }
 
 /* Video Grid */
-.container {
-    display: flex;
-}
-
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
-    padding: 20px;
-    flex: 1;
 }
 
 .video-card {
-    background: white;
+    background: var(--darker-bg);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
 }
 
 .video-card img {
     width: 100%;
-    height: auto;
+    height: 160px;
+    object-fit: cover;
 }
 
 .video-card h3 {
-    margin: 10px;
+    margin: 12px;
     font-size: 1rem;
 }
 
 .video-card p {
-    margin: 0 10px 10px;
-    color: #666;
-    font-size: 0.9rem;
+    margin: 0 12px 12px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Upload Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--darker-bg);
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 90%;
+    border: 1px solid var(--orange);
+}
+
+.modal-content h2 {
+    color: var(--orange);
+    margin-top: 0;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #333;
+    border: none;
+    border-radius: 4px;
+    color: var(--text);
+}
+
+.modal-content button {
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.close {
+    color: var(--text-muted);
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#videoPreview {
+    margin-top: 20px;
+    background: #333;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+}
+
+#videoPreview video {
+    max-width: 100%;
+    max-height: 200px;
 }
