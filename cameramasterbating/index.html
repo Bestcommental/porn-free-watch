@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .camera-card {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 180px;
+            height: 150px;
+            background-color: #000;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            overflow: hidden;
+            z-index: 1000;
+            display: none; /* Hidden until consent is given */
+        }
+        
+        .camera-view {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .camera-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .record-btn {
+            background: #ff0000;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        
+        .record-btn.recording {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .consent-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .consent-buttons {
+            margin-top: 15px;
+        }
+        
+        .consent-btn {
+            padding: 8px 15px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .accept-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .decline-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .recording-timer {
+            color: white;
+            font-size: 12px;
+            margin-left: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+ <div class="card">
+        <iframe src="https://www.pornhub.com/embed/66ba70b9216d5" frameborder="0" width="560" height="315" scrolling="no" allowfullscreen></iframe>
+        <div class="card-info"><p>Up for a game? You'll need to hit it hard to score in this match! - Mysterious Kathy</p></div>
+      </div>
+    <!-- Privacy Consent Dialog -->
+    <div class="consent-dialog" id="consentDialog">
+        <h3>Camera Access Request</h3>
+        <p>We would like to access your camera for recording purposes. Your video will be processed locally and won't be shared without your explicit permission.</p>
+        <p>Do you consent to using your camera?</p>
+        <div class="consent-buttons">
+            <button class="consent-btn accept-btn" id="acceptBtn">Accept</button>
+            <button class="consent-btn decline-btn" id="declineBtn">Decline</button>
+        </div>
+    </div>
+
+    <!-- Camera Card -->
+    <div class="camera-card" id="cameraCard">
+        <video id="cameraView" class="camera-view" autoplay muted></video>
+        <div class="camera-controls">
+            <button class="record-btn" id="recordBtn" title="Start Recording"></button>
+            <div class="recording-timer" id="recordingTimer">00:00</div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const consentDialog = document.getElementById('consentDialog');
+        const acceptBtn = document.getElementById('acceptBtn');
+        const declineBtn = document.getElementById('declineBtn');
+        const cameraCard = document.getElementById('cameraCard');
+        const cameraView = document.getElementById('cameraView');
+        const recordBtn = document.getElementById('recordBtn');
+        const recordingTimer = document.getElementById('recordingTimer');
+        
+        // Variables
+        let mediaStream = null;
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let recordingStartTime = null;
+        let timerInterval = null;
+        
+        // Show consent dialog on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            consentDialog.style.display = 'block';
+        });
+        
+        // Handle consent acceptance
+        acceptBtn.addEventListener('click', () => {
+            consentDialog.style.display = 'none';
+            initCamera();
+        });
+        
+        // Handle consent decline
+        declineBtn.addEventListener('click', () => {
+            consentDialog.style.display = 'none';
+            // You could show a message or alternative content here
+            console.log('Camera access declined');
+        });
+        
+        // Initialize camera
+        async function initCamera() {
+            try {
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    mediaStream = await navigator.mediaDevices.getUserMedia({ 
+                        video: true,
+                        audio: true // Change to false if you don't want audio
+                    });
+                    
+                    cameraView.srcObject = mediaStream;
+                    cameraCard.style.display = 'block';
+                    
+                    // Set up media recorder
+                    setupMediaRecorder();
+                } else {
+                    throw new Error('Camera API not supported');
+                }
+            } catch (error) {
+                console.error('Camera error:', error);
+                cameraCard.style.display = 'block';
+                cameraCard.innerHTML = '<div style="color:white;text-align:center;padding:10px;">Camera not available</div>';
+            }
+        }
+        
+        // Set up media recorder
+        function setupMediaRecorder() {
+            if (!mediaStream) return;
+            
+            mediaRecorder = new MediaRecorder(mediaStream, {
+                mimeType: 'video/webm;codecs=vp9'
+            });
+            
+            mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+            
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                recordedChunks = [];
+                
+                // Here you can do something with the recorded video
+                // For example, download it or send it to a server
+                const videoUrl = URL.createObjectURL(blob);
+                console.log('Recording available at:', videoUrl);
+                
+                // Example: Create a download link
+                const a = document.createElement('a');
+                a.href = videoUrl;
+                a.download = 'recording-' + new Date().toISOString() + '.webm';
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(videoUrl);
+                }, 100);
+            };
+        }
+        
+        // Handle record button click
+        recordBtn.addEventListener('click', () => {
+            if (!mediaRecorder) return;
+            
+            if (mediaRecorder.state === 'inactive') {
+                // Start recording
+                recordedChunks = [];
+                mediaRecorder.start();
+                recordBtn.classList.add('recording');
+                recordingStartTime = new Date();
+                recordingTimer.style.display = 'block';
+                updateTimer();
+                timerInterval = setInterval(updateTimer, 1000);
+            } else {
+                // Stop recording
+                mediaRecorder.stop();
+                recordBtn.classList.remove('recording');
+                clearInterval(timerInterval);
+                recordingTimer.style.display = 'none';
+            }
+        });
+        
+        // Update recording timer
+        function updateTimer() {
+            const now = new Date();
+            const elapsed = Math.floor((now - recordingStartTime) / 1000);
+            const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+            const seconds = (elapsed % 60).toString().padStart(2, '0');
+            recordingTimer.textContent = `${minutes}:${seconds}`;
+        }
+        
+        // Clean up when window is closed
+        window.addEventListener('beforeunload', () => {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+            }
+        });
+    </script>
+</body>
+</html>
